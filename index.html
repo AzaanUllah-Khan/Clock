@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Redacted+Script&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQGnkBFRUBVF3yth3B7PCX0UCeinUKpaNhA&usqp=CAU">
+    <title>Analog Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 95vh;
+            overflow: hidden;
+        }
+
+        #clockcase {
+            height: 50vh;
+            width: 50vh;
+            background: url(https://i.pinimg.com/originals/63/f2/28/63f2287eedbfadbeddd41ca3105947a2.gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            z-index: -100;
+            margin: 20px 0;
+            padding: 20px;
+        }
+
+        #hours,
+        #minutes,
+        #seconds {
+            position: absolute;
+            border-radius: 15px;
+            transform-origin: bottom;
+            background-color: black;
+        }
+
+        #hours {
+            left: 48.5%;
+            top: 27%;
+            width: 1.5%;
+            height: 21%;
+        }
+
+        #minutes {
+            left: 49%;
+            top: 15%;
+            width: 1%;
+            height: 35%;
+            z-index: -1;
+        }
+
+        #seconds {
+            left: 49%;
+            top: 10%;
+            width: 0.5%;
+            height: 40%;
+            z-index: -10;
+        }
+
+        .options {
+            display: flex;
+        }
+
+        .img img {
+            width: 30px;
+            margin-right: 1px;
+            border: 1px double black;
+        }
+
+        @media screen and (max-width: 420px) {
+            .options {
+                display: none;
+            }
+        }
+
+        #clock {
+            font-family: 'Redacted Script', cursive;
+            font-size: 10px;
+            transition: all 1s ease;
+            margin: 20px 0 0;
+        }
+        
+        #clock:hover {
+            font-size: 30px;
+            font-family: Arial;
+            font-weight: Bolder;
+            color: Green;
+            cursor: progress;
+        }
+        button{
+            width: 30%;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid green;
+            padding: 10px;
+            border-radius: 30px;
+            color: green;
+        }
+        button:hover{
+            background-color: green;
+            border: whitesmoke;
+            color: white;
+            transition: all 1s ease;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="options">
+        <div class="img" onclick="first()">
+            <img src="https://i.pinimg.com/originals/63/f2/28/63f2287eedbfadbeddd41ca3105947a2.gif" alt="">
+        </div>
+        <div class="img" onclick="second()">
+            <img src="https://w7.pngwing.com/pngs/37/129/png-transparent-analog-clock-clock-seiko-watch-case-astron-jam-angle-white-furniture-thumbnail.png"
+                alt="">
+        </div>
+        <div class="img" onclick="third()">
+            <img src="https://e7.pngegg.com/pngimages/547/237/png-clipart-black-analog-watch-illustration-clock-face-moving-faces-roman-numerals-watch-hand-alarm-clock-angle-white.png"
+                alt="">
+        </div>
+        <div class="img" onclick="fourth()">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQGnkBFRUBVF3yth3B7PCX0UCeinUKpaNhA&usqp=CAU"
+                alt="">
+        </div>
+        <div class="img" onclick="fifth()">
+            <img src="https://i.pinimg.com/originals/63/f2/28/63f2287eedbfadbeddd41ca3105947a2.gif" alt="">
+        </div>
+    </div>
+    <div id="clockcase">
+        <div id="hours"></div>
+        <div id="minutes"></div>
+        <div id="seconds"></div>
+    </div>
+    <button onclick="show()">Digital Time</button>
+    <div id="clock">8:10:45</div>
+    <script>
+        var h = document.getElementById("hours")
+        var m = document.getElementById("minutes")
+        var s = document.getElementById("seconds")
+        setInterval(() => {
+            n = new Date();
+            hours = n.getHours();
+            minutes = n.getMinutes();
+            seconds = n.getSeconds();
+
+            hoursHandRotation = 30 * hours + minutes / 2
+            var minuteHandRotation = 6 * minutes
+            secondHandRotation = 6 * seconds
+
+            h.style.transform = `rotate(${hoursHandRotation}deg)`;
+            m.style.transform = `rotate(${minuteHandRotation}deg)`;
+            s.style.transform = `rotate(${secondHandRotation}deg)`;
+        }, 1000)
+        var behind = document.getElementById("clockcase")
+        function first() {
+            behind.style.background = `url(https://i.pinimg.com/originals/63/f2/28/63f2287eedbfadbeddd41ca3105947a2.gif)`
+        }
+        function second() {
+            behind.style.background = `url(https://w7.pngwing.com/pngs/37/129/png-transparent-analog-clock-clock-seiko-watch-case-astron-jam-angle-white-furniture-thumbnail.png)`
+        }
+        function third() {
+            behind.style.background = `url(https://e7.pngegg.com/pngimages/547/237/png-clipart-black-analog-watch-illustration-clock-face-moving-faces-roman-numerals-watch-hand-alarm-clock-angle-white.png)`
+        }
+        function fourth() {
+            behind.style.background = `url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQGnkBFRUBVF3yth3B7PCX0UCeinUKpaNhA&usqp=CAU)`
+        }
+        function fifth() {
+            behind.style.background = `url(https://i.pinimg.com/originals/63/f2/28/63f2287eedbfadbeddd41ca3105947a2.gif)`
+        }
+        setInterval(showTime, 1000);
+        function showTime() {
+            let time = new Date();
+            let hour = time.getHours();
+            let min = time.getMinutes();
+            let sec = time.getSeconds();
+            am_pm = "AM";
+
+            if (hour > 12) {
+                hour -= 12;
+                am_pm = "PM";
+            }
+            if (hour == 0) {
+                hr = 12;
+                am_pm = "AM";
+            }
+
+            hour = hour < 10 ? "0" + hour : hour;
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+
+            let currentTime = hour + ":"
+                + min + ":" + sec + am_pm;
+
+            document.getElementById("clock")
+                .innerHTML = currentTime;
+        }
+        showTime();
+        function show() {
+            document.getElementById("clock").style.fontSize = `30px`
+            document.getElementById("clock").style.fontFamily = `Arial`
+            document.getElementById("clock").style.fontWeight = `Bolder`
+            document.getElementById("clock").style.color = `Green`
+        }
+    </script>
+</body>
+
+</html>
